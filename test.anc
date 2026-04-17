@@ -1,0 +1,122 @@
+// =======================================================
+// PSEUDO++ TITAN STRESS TEST
+// =======================================================
+
+out "--- SYSTEM BOOTING ---"
+out "Initializing Titan Test Sequence..."
+
+// -------------------------------------------------------
+// PHASE 1: ALGORITHMIC SORTING (BUBBLE SORT)
+// -------------------------------------------------------
+out "[PHASE 1] Array Sorting..."
+
+data[0] = 100
+data[1] = 12.0
+data[2] = 45.2
+data[3] = 5.1
+data[4] = 23.8
+
+out "Unsorted Data Loaded. Commencing Sort..."
+
+for i from 0 to 4 do
+    for j from 0 to 4 do
+        if data[i] < data[j] then
+            // Swap logic
+            temp = data[i]
+            data[i] = data[j]
+            data[j] = temp
+        endif
+    endfor
+endfor
+
+out "Sort Complete. Lowest Value:"
+out data[0]
+out "Highest Value:"
+out data[4]
+
+// -------------------------------------------------------
+// PHASE 2: DENSE MATRIX MULTIPLICATION
+// -------------------------------------------------------
+out "[PHASE 2] 3x3 Matrix Multiplication..."
+
+// Initialize MatA and MatB
+for i from 0 to 2 do
+    for j from 0 to 2 do
+        matA[i][j] = i + j
+        matB[i][j] = i * j
+        resultMat[i][j] = 0
+    endfor
+endfor
+
+// Triple-nested loop for O(N^3) multiplication
+for i from 0 to 2 do
+    for j from 0 to 2 do
+        for k from 0 to 2 do
+            // res[i][j] += matA[i][k] * matB[k][j]
+            product = matA[i][k] * matB[k][j]
+            resultMat[i][j] = resultMat[i][j] + product
+        endfor
+    endfor
+endfor
+
+out "Matrix Processed. Check Result Matrix Index [2][2]:"
+out resultMat[2][2]
+
+// -------------------------------------------------------
+// PHASE 3: OOP AUTONOMOUS KINEMATICS SIMULATION
+// -------------------------------------------------------
+out "[PHASE 3] OOP Grid Traversal..."
+
+class Agent
+endclass
+
+// Instantiate and configure our autonomous agent
+rover = new Agent
+rover.x = 0
+rover.y = 0
+rover.battery = 100
+rover.isActive = 1 
+
+target_x = 4
+target_y = 3
+
+out "Rover Deployed. Target acquired at [4, 3]"
+
+while rover.isActive == 1 do
+    
+    // Check win condition (No boolean AND yet, so we nest)
+    if rover.x == target_x then
+        if rover.y == target_y then
+            out "DESTINATION REACHED."
+            rover.isActive = 0
+            brk
+        endif
+    endif
+    
+    // Check fail condition
+    if rover.battery < 10 then
+        out "CRITICAL BATTERY. HALTING."
+        rover.isActive = 0
+        brk
+    endif
+
+    // Kinematic movement logic
+    if rover.x < target_x then
+        rover.x = rover.x + 1
+        rover.battery = rover.battery - 8
+        out "Moved X. Current X:"
+        out rover.x
+    endif
+    
+    if rover.y < target_y then
+        rover.y = rover.y + 1
+        rover.battery = rover.battery - 8
+        out "Moved Y. Current Y:"
+        out rover.y
+    endif
+
+endwhile
+
+out "Final Battery Level:"
+out rover.battery
+out "--- TITAN SEQUENCE COMPLETE ---"
