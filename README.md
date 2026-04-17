@@ -52,5 +52,14 @@ Once installed and added to your PATH, you can use the compiler from your termin
 1. Create a file with your Pseudo++ code and save it with a `.anc` extension (e.g., `script.anc`).
 2. Open your terminal in the same folder as your script.
 3. Compile the script using the `-o` flag to specify the output name:
-   ```bash
+```bash
    anc script.anc -o my_app
+```
+   The compiler will generate your native executable alongside symbol_table.txt, 3ac.txt, and syntax_tree.txt for debugging. 
+   
+4.Run your generated program: 
+
+5.Windows: .\my_app.exe 
+
+5.Mac/Linux: ./my_app 
+
