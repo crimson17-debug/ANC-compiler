@@ -1,34 +1,65 @@
-# WinFlexBison - Flex and Bison for Microsoft Windows
+# Pseudo++ Compiler (`anc`)
 
-WinFlexBison is a Windows port of [Flex (the fast lexical analyser)](https://github.com/westes/flex/) and [GNU Bison (parser generator)](https://www.gnu.org/software/bison/).
-Both win_flex and win_bison are based on upstream sources but depend on system libraries only.
+Pseudo++ is a custom, readable programming language designed for algorithmic and object-oriented logic. 
 
-**NOTE**:
-* 2.4.x versions include GNU Bison version 2.7
-* 2.5.x versions include GNU Bison version 3.x.x
+This repository contains the complete compiler toolchain built from scratch using **Lex (Flex)** and **Yacc (Bison)**. It parses Pseudo++ source code, generates an Abstract Syntax Tree (AST), computes Three-Address Code (3AC), maintains a Symbol Table, and ultimately translates the code into a standalone, native C++ executable.
 
-## License
-Flex uses a [BSD license](flex/src/COPYING), GNU Bison is [licensed under the GNU General Public License (GPLv3+)](bison/src/COPYING).  
-All build scripts in WinFlexBison are distributed under GPLv3+. See [COPYING](COPYING) for details.
+##  Language Features
+* **Intuitive Syntax:** Easy-to-read keywords (`for i from 0 to 4 do`, `if x < y then`).
+* **Data Types:** Supports integers, floating-point numbers, and strings.
+* **Data Structures:** Built-in support for Arrays and Object properties.
+* **Control Flow:** Nested loops (`while`, `for`), conditionals (`if`/`then`), and break/continue statements.
+* **I/O Operations:** Simple input and output (`in`, `out`).
 
-All documentation, especially those under custom_build_rules/doc, is distributed under the GNU Free Documentation License (FDL 1.3+).
+---
 
-## Build status
-Bison 3.x (master) [![Build status](https://ci.appveyor.com/api/projects/status/58lcjnr0mb9uc8c8/branch/master?svg=true)](https://ci.appveyor.com/project/lexxmark/winflexbison/branch/master) and, for compatibility reasons, Bison 2.7 (bison2.7) [![Build status](https://ci.appveyor.com/api/projects/status/58lcjnr0mb9uc8c8/branch/bison2.7?svg=true)](https://ci.appveyor.com/project/lexxmark/winflexbison/branch/bison2.7)
+## ⚙️ Prerequisites
 
-## Downloads
-https://github.com/lexxmark/winflexbison/releases provides stable versions.
-To test non-released development versions see the artifacts provided by CI under "Build status".
+Because `anc` acts as a transpiler that converts Pseudo++ into C++ under the hood, **you must have a C++ compiler (`g++`) installed on your system** for it to generate the final executable.
 
-## Changelog
-The release page includes the full Changelog but you may also see the [changelog.md](changelog.md) file.
+* **Windows:** Install [MinGW-w64](https://www.mingw-w64.org/) and ensure the `bin` folder (containing `g++`) is added to your system's PATH.
+* **macOS:** Open your terminal and run `xcode-select --install`
+* **Linux:** Open your terminal and run `sudo apt install build-essential`
 
-## Build requirements
-* Visual Studio 2017 or newer
-* optional: CMake (when building with CMake)
+---
 
-## HowTo
-You may use win_flex and win_bison directly on the command line or [use them via CustomBuildRules in VisualStudio](custom_build_rules/README.md).
+##  Installation (Pre-built Binaries)
 
-## Example flex/bison files
-See https://github.com/meyerd/flex-bison-example
+You do not need to build the compiler from source. This repository uses a GitHub Actions CI/CD pipeline to automatically generate ready-to-use compilers for all major operating systems.
+
+1. Go to the **[Actions](../../actions)** tab of this repository.
+2. Click on the latest successful build (the green checkmark).
+3. Scroll down to the **Artifacts** section at the bottom of the page.
+4. Download the `.zip` file for your specific operating system (`windows-latest`, `macos-latest`, or `ubuntu-latest`).
+5. Extract the `.zip` file to find your `anc` executable.
+
+### ⚠️ Crucial Step: Add to PATH
+To use the `anc` command from *any* folder on your computer, you must add the folder containing your extracted executable to your system's Environment Variables.
+* **Windows:**
+  1. Press the Windows key and search for "Environment Variables".
+  2. Click "Edit the system environment variables".
+  3. Click the `Environment Variables` button.
+  4. Select the `Path` variable and click Edit.
+  5. Click New and add the exact folder path where your `anc.exe` lives.
+* **Mac/Linux:** Move the binary to your local bin directory by running: `sudo mv anc /usr/local/bin/`
+
+---
+
+##  Usage
+
+Once installed and added to your PATH, you can use the compiler from your terminal exactly like `gcc`.
+
+1. Create a file with your Pseudo++ code and save it with a `.anc` extension (e.g., `script.anc`).
+2. Open your terminal in the same folder as your script.
+3. Compile the script using the `-o` flag to specify the output name:
+```bash
+   anc script.anc -o my_app
+```
+   The compiler will generate your native executable alongside symbol_table.txt, 3ac.txt, and syntax_tree.txt for debugging. 
+   
+4.Run your generated program: 
+
+5.Windows: .\my_app.exe 
+
+5.Mac/Linux: ./my_app 
+

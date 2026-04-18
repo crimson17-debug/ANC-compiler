@@ -53,7 +53,7 @@ jobs:
 
     # --- PACKAGING STEP ---
     - name: Upload Compiled Binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: anc-compiler-${{ matrix.os }}
         path: |
