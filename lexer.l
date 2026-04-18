@@ -11,6 +11,7 @@
 "//".* { }
 "out"                   { return DISPLAY; }
 "in"                    { return INPUT; }
+"typeof"                { return TYPEOF; }
 "="                     { return ASSIGN; } 
 "+"|"plus"              { return PLUS; }
 "-"|"minus"             { return MINUS; }

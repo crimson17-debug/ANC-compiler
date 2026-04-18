@@ -3,16 +3,4 @@
 ========================================================
 IDENTIFIER		TYPE			LINE DETECTED
 --------------------------------------------------------
-Agent			Class Definition		71
-battery			Object Property		114
-i			Loop Iterator		60
-isActive		Object Property		100
-j			Loop Iterator		59
-k			Loop Iterator		58
-product			Variable			57
-rover			Variable			75
-target_x		Variable			81
-target_y		Variable			83
-temp			Variable			26
-x			Object Property		106
-y			Object Property		113
+x			Variable			2

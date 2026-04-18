@@ -72,27 +72,28 @@ extern int yydebug;
     IDENTIFIER = 273,              /* IDENTIFIER  */
     STRING = 274,                  /* STRING  */
     NUMBER = 275,                  /* NUMBER  */
-    ASSIGN = 276,                  /* ASSIGN  */
-    TO = 277,                      /* TO  */
-    DISPLAY = 278,                 /* DISPLAY  */
-    PLUS = 279,                    /* PLUS  */
-    MINUS = 280,                   /* MINUS  */
-    MULTIPLY = 281,                /* MULTIPLY  */
-    DIVIDE = 282,                  /* DIVIDE  */
-    INPUT = 283,                   /* INPUT  */
-    WHILE = 284,                   /* WHILE  */
-    DO = 285,                      /* DO  */
-    ENDWHILE = 286,                /* ENDWHILE  */
-    IF = 287,                      /* IF  */
-    THEN = 288,                    /* THEN  */
-    ENDIF = 289,                   /* ENDIF  */
-    LESS = 290,                    /* LESS  */
-    GREATER = 291,                 /* GREATER  */
-    EQUALS = 292,                  /* EQUALS  */
-    CLASS = 293,                   /* CLASS  */
-    ENDCLASS = 294,                /* ENDCLASS  */
-    NEW = 295,                     /* NEW  */
-    DOT = 296                      /* DOT  */
+    TYPEOF = 276,                  /* TYPEOF  */
+    ASSIGN = 277,                  /* ASSIGN  */
+    TO = 278,                      /* TO  */
+    DISPLAY = 279,                 /* DISPLAY  */
+    PLUS = 280,                    /* PLUS  */
+    MINUS = 281,                   /* MINUS  */
+    MULTIPLY = 282,                /* MULTIPLY  */
+    DIVIDE = 283,                  /* DIVIDE  */
+    INPUT = 284,                   /* INPUT  */
+    WHILE = 285,                   /* WHILE  */
+    DO = 286,                      /* DO  */
+    ENDWHILE = 287,                /* ENDWHILE  */
+    IF = 288,                      /* IF  */
+    THEN = 289,                    /* THEN  */
+    ENDIF = 290,                   /* ENDIF  */
+    LESS = 291,                    /* LESS  */
+    GREATER = 292,                 /* GREATER  */
+    EQUALS = 293,                  /* EQUALS  */
+    CLASS = 294,                   /* CLASS  */
+    ENDCLASS = 295,                /* ENDCLASS  */
+    NEW = 296,                     /* NEW  */
+    DOT = 297                      /* DOT  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -111,7 +112,7 @@ union YYSTYPE
     std::vector<std::string>* str_list;
     std::vector<class ASTNode*>* node_list;
 
-#line 115 "parser.tab.h"
+#line 116 "parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

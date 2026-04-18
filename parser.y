@@ -44,12 +44,13 @@ std::map<std::string, SymbolEntry> pseudoSymbolTable;
     std::vector<std::string>* str_list;
     std::vector<class ASTNode*>* node_list;
 }
-%expect 9
+%expect 11
 %token RTN IMPORT LBRACKET RBRACKET BRK CNT LPAREN RPAREN
 %token FOR FROM ENDFOR FUNC ENDFUNC COMMA
 %token <fval> FLOAT_LITERAL
 %token <str> IDENTIFIER STRING
 %token <num> NUMBER
+%token TYPEOF
 %token ASSIGN TO DISPLAY PLUS MINUS MULTIPLY DIVIDE INPUT
 %token WHILE DO ENDWHILE IF THEN ENDIF LESS GREATER EQUALS
 %token CLASS ENDCLASS NEW DOT
@@ -61,6 +62,7 @@ std::map<std::string, SymbolEntry> pseudoSymbolTable;
 
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
+%left TYPEOF
 
 %%
 
@@ -147,6 +149,7 @@ condition:
 
 expression:
     NUMBER { $$ = new NumberNode($1); }
+    | TYPEOF expression { $$ = new TypeOfNode($2); }
     | FLOAT_LITERAL { $$ = new FloatNode($1); }
     | STRING { $$ = new StringNode($1); free($1); }
     | IDENTIFIER { $$ = new VariableNode($1); free($1); }

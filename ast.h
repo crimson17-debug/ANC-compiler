@@ -502,6 +502,37 @@ public:
     }
 };
 
+// Add this class to your AST nodes section
+class TypeOfNode : public ASTNode {
+    ASTNode* expr;
+    std::string resultTemp;
+public:
+    TypeOfNode(ASTNode* e) : expr(e) { resultTemp = newTemp(); }
+    
+    // Generates C++ code to return a string based on the Value's type field
+    std::string compile() override { 
+        std::string e = expr->compile();
+        // Uses a ternary chain to determine the type string at runtime
+        return "Value((" + e + ".type == 0) ? \"int\" : (" + e + ".type == 1) ? \"string\" : (" + 
+               e + ".type == 2) ? \"object\" : (" + e + ".type == 3) ? \"float\" : \"array\")"; 
+    }
+    
+    std::string gen3AC() override {
+        std::string code = expr->gen3AC();
+        code += resultTemp + " = typeof " + expr->getResult() + "\n";
+        return code;
+    }
+
+    std::string getResult() override { return resultTemp; }
+
+    std::string getSyntaxTree(int depth = 0) override {
+        std::string res = getIndent(depth) + "TypeOf\n";
+        res += expr->getSyntaxTree(depth + 1);
+        return res;
+    }
+};
+
+
 class ReturnNode : public ASTNode {
     ASTNode* expr;
 public:
